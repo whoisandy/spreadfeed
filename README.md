@@ -1,6 +1,8 @@
-# SpreadFeed - Display feed/data right from Google Spreadsheets.
+# SpreadFeed
 
-Display your google spreadsheet data on your site as feed. Configure to display contents of each sheet or entire worksheet.
+Display feed/data right from Google Spreadsheets.
+
+A small and nifty plugin to display your google spreadsheet data on your site as feed. Configure to display contents of each sheet or entire worksheet.
 
 ##TODO
 
