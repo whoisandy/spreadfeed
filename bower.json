@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "authors": [
+    "Bhargav Anand <rjn143@gmail.com>"
+  ],
+  "description": "Script to read json from google spreadsheets",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies":{
+    "jquery":"latest"
+  }
+}

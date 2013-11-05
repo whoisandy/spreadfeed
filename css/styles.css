@@ -1,0 +1,47 @@
+*,
+*:before,
+*:after{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  line-height: 1.4;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.feed{
+  width:640px;
+  margin: 20px auto 0;
+}
+
+.sf-wrap{
+  width: 100%;
+  position: relative;
+  display: table;
+}
+
+table{
+  max-width: 100%;
+  border-collapse: collapse;
+  border: 1px #ddd solid;
+}
+
+th, td{
+  padding: 4px 8px;
+  border: 1px #ddd solid;
+  text-align: left;
+}
+
+th{
+  background: #fafafa;
+}
+
+
+
+
+

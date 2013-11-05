@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!--[if lt IE 8]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <div id="wrapper">
+
+    <!-- A place holder to hold all the tabular data received from the spreadsheet -->
+    <div class="feed"></div>
+  </div>
+
+  <!-- Include dependecies here -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+  <!-- include plugins -->
+  <script src="js/spreadfeed.js"></script>
+  <script type="text/javascript">
+    $('.feed').spreadfeed({
+      key: '0ApU9ybAEOY8kdDhaZUMxVTNpUFlrVWVqYkE3V29aRFE',
+      sheet: 2
+    });
+  </script>
+</body>
+</html>
