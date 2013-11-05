@@ -6,7 +6,9 @@ A small and nifty plugin to display your google spreadsheet data on your site as
 
 ###TODO
 
+- Structure is as a traditional jquery plugin
 - URL as a parameter
 - List as a parameter (with required fallbacks)
 - Pagination
 - Filters
+
