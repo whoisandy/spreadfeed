@@ -19,10 +19,10 @@ if( typeof Object.create !== 'function' ) {
 
       if( typeof options === 'string') {
         if(/^https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(options)){
-          self.url = options;
+          // self.url = options;
           self.options = $.extend({}, $.fn.spreadfeed.options, {url: options});
         } else {
-          self.key = options;
+          // self.key = options;
           self.options = $.extend({}, $.fn.spreadfeed.options, {key: options});
         }
       } else if (typeof options === 'object') {
@@ -41,10 +41,9 @@ if( typeof Object.create !== 'function' ) {
         return;
       }
 
-      this.url = self.url ===  undefined ? this.buildFromKeySheet(self.options.key, self.options.sheet) : this.buildFromUrl(self.options.url);
+      self.url = self.options.url ===  undefined ? this.buildFromKeySheet(self.options.key, self.options.sheet) : this.buildFromUrl(self.options.url);
 
-      this.showTable();
-
+      self.showTable();
     },
 
     buildFromKeySheet: function(key, sheet){
@@ -71,6 +70,13 @@ if( typeof Object.create !== 'function' ) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     },
 
+    isvalid: function(order){
+      if(typeof(order) !== 'string' && typeof(order) !== 'undefined' && order.length > 0){
+          return true;
+      }
+      return false;
+    },
+
     sanitize: function(objs){
       var results = $.map(objs.feed.entry, function(result){
         var ta = result.content.$t.toString().trim().split(", ");
@@ -90,16 +96,11 @@ if( typeof Object.create !== 'function' ) {
     },
 
     getRowCount: function(data){
-      var self = this;
       return data.length;
     },
 
     getColCount: function(data){
-      var self = this;
-      var c = $.map(data, function(v){
-        return Object.keys(v).length;
-      });
-      return Math.max.apply(Math, c);
+      return this.getAllKeys(data).length;
     },
 
     getAllKeys: function(data){
@@ -113,14 +114,19 @@ if( typeof Object.create !== 'function' ) {
           keys.push(key);
         }
       }
-
       return keys;
     },
 
     buildTable: function(data, elem){
       var self = this,
-          list = self.getAllKeys(data),
-          table = $('<table></table>');
+          table = $('<table></table>'),
+          list;
+
+      if(self.isvalid(self.options.order)){
+        list = self.options.order;
+      } else {
+        list = self.getAllKeys(data);
+      }
 
       for(i=0; i < self.getRowCount(data); i++){
         var row = $('<tr></tr>');
