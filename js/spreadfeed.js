@@ -1,4 +1,6 @@
-// Utility function
+/**
+ * Utility function
+ */
 if( typeof Object.create !== 'function' ) {
   Object.create = function(obj) {
     function F() {};
@@ -7,7 +9,13 @@ if( typeof Object.create !== 'function' ) {
   };
 }
 
-// Main plugin here
+/**
+ * jQuery SpreadFeed
+ * Version: 0.0.0
+ * Author: whoisandie
+ *
+ *
+ */
 (function($, window, document, undefined){
 
   var Spreadfeed = {
@@ -100,13 +108,16 @@ if( typeof Object.create !== 'function' ) {
     },
 
     getColCount: function(data){
-      return this.getAllKeys(data).length;
+      var self = this;
+          count = $.map(data, function(v){ return Object.keys(v).length });
+      return self.isvalid(self.options.order) ? self.options.order.length : Math.max.apply(Math, count);
+      // return this.getAllKeys(data).length;
     },
 
     getAllKeys: function(data){
       var self = this,
-          c = $.map(data, function(v){ return Object.keys(v).length }),
-          el = data[Math.max.apply(Math, c)],
+          count = $.map(data, function(v){ return Object.keys(v).length }),
+          el = data[Math.max.apply(Math, count)],
           keys = [];
 
       for(var key in el){
@@ -114,6 +125,7 @@ if( typeof Object.create !== 'function' ) {
           keys.push(key);
         }
       }
+
       return keys;
     },
 
