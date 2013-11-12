@@ -21,7 +21,7 @@ if( typeof Object.create !== 'function' ) {
         self.key = options;
       } else if (typeof options === 'object') {
         if (options.key == null){
-          console.log('Please provide a key');
+          console.log('Please provide a spreadsheet key');
           return;
         } else {
           self.key = options.key;
@@ -85,16 +85,17 @@ if( typeof Object.create !== 'function' ) {
     },
 
     getAllKeys: function(data){
-      var self = this;
-      var c = $.map(data, function(v){ return Object.keys(v).length });
-      var el = data[Math.max.apply(Math, c)];
-      var keys = [];
+      var self = this,
+          c = $.map(data, function(v){ return Object.keys(v).length }),
+          el = data[Math.max.apply(Math, c)],
+          keys = [];
 
       for(var key in el){
         if(el.hasOwnProperty(key)){
           keys.push(key);
         }
       }
+
       return keys;
     },
 
@@ -118,23 +119,28 @@ if( typeof Object.create !== 'function' ) {
       var thead = $('<thead></thead>'), hrow = $('<tr></tr>');
       for(k=0; k<list.length; k++){
         var hcol = $('<th></th>');
-        hcol.append(self.format(list[k]));
+        if(list[k] === 'title' && self.options.title !== undefined){
+          hcol.append(self.format(self.options.title));
+        } else {
+          hcol.append(self.format(list[k]));
+        }
         hrow.append(hcol);
       }
 
       table.prepend(thead.append(hrow));
 
-      elem.html(table.addClass('sf-wrap'));
+      elem.css('display', 'none').html(table.addClass('sf-wrap')).fadeIn('slow');
     },
 
     showTable: function(){
       var self = this;
-      self.$elem.css('display', 'none').html('<p>Loading...</p>').fadeIn('slow');
+      self.$elem.html('<p>Loading...</p>');
       $.when(self.fetch(self.url)).done(function(results){
+        console.log(results);
         self.buildTable(self.sanitize(results), self.$elem);
       }).fail(function(){
         self.$elem.html('<p>Unable to fetch data. Please try refreshing.</p>');
-        console.log('Unable to fetch data');
+        console.log('Unable to fetch data. Please try refreshing.');
       });
     },
   };
