@@ -4,7 +4,7 @@
   "authors": [
     "Bhargav Anand <rjn143@gmail.com>"
   ],
-  "description": "Script to read json from google spreadsheets",
+  "description": "A nifty plugin to display your google spreadsheet data on your site",
   "license": "MIT",
   "private": true,
   "ignore": [
