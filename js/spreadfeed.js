@@ -182,8 +182,8 @@ if( typeof Object.create !== 'function' ) {
 
   $.fn.spreadfeed = function( options ){
     return this.each(function(){
-      var gs = Object.create( Spreadfeed );
-      gs.init( options, this );
+      var spreadfeed = Object.create( Spreadfeed );
+      spreadfeed.init( options, this );
     });
   };
 
