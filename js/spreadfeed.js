@@ -27,10 +27,8 @@ if( typeof Object.create !== 'function' ) {
 
       if( typeof options === 'string') {
         if(/^https:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(options)){
-          // self.url = options;
           self.options = $.extend({}, $.fn.spreadfeed.options, {url: options});
         } else {
-          // self.key = options;
           self.options = $.extend({}, $.fn.spreadfeed.options, {key: options});
         }
       } else if (typeof options === 'object') {
@@ -111,13 +109,12 @@ if( typeof Object.create !== 'function' ) {
       var self = this;
           count = $.map(data, function(v){ return Object.keys(v).length });
       return self.isvalid(self.options.order) ? self.options.order.length : Math.max.apply(Math, count);
-      // return this.getAllKeys(data).length;
     },
 
     getAllKeys: function(data){
       var self = this,
           count = $.map(data, function(v){ return Object.keys(v).length }),
-          el = data[Math.max.apply(Math, count)],
+          el = data[count.indexOf(Math.max.apply(Math, count))],
           keys = [];
 
       for(var key in el){
